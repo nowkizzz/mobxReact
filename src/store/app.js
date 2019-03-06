@@ -2,7 +2,7 @@ import { observable, computed, autorun, action} from 'mobx';
 
 class AppStore  {
   @observable dataList = [];
-  @observable defaultVal = 'abc'
+  @observable defaultVal = '红茶一号'
   @observable checked = false
   
   constructor() {

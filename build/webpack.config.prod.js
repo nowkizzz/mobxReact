@@ -49,7 +49,37 @@ module.exports = merge(baseConfig, {
                     }
                 ]
             })
-        }]
+        },
+        {
+            test: /(\.css|\.sass|\.scss)$/,
+            use: ExtractTextPlugin.extract({
+              fallback: "style-loader",
+              use: [{
+                loader: 'css-loader',
+                options: {
+                  importLoaders: 1
+                }
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  plugins: (loader) => [
+                    // require('postcss-import')({ root: loader.resourcePath }),
+                    // require('postcss-cssnext')(),
+                    // require('cssnano')(),
+                    require('autoprefixer')({
+                      browsers: 'last 5 version'
+                    })
+                  ]
+                }
+              },
+              {
+                loader: 'sass-loader'
+              }
+              ]
+            })
+        }
+          ]
     },
     optimization:{
         runtimeChunk: {

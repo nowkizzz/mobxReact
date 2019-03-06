@@ -2,7 +2,7 @@ import { observable, computed, autorun, action} from 'mobx';
 import { getSysSetting } from '../api';
 
 class AppStore  {
-  @observable value = 'aaaaaa'
+  @observable value = '结衣'
 
   @observable setting = {};
   @action.bound getSysSetting() {

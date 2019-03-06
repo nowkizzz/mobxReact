@@ -37,7 +37,7 @@ module.exports = merge(baseConfig, {
         // host:  hostAddress, // IP地址
         port: 8600, 
         open: true,
-        progress: true, //打包进度反馈
+        progress: false, //打包进度反馈
         // contentBase: './dist',  //默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器，应该在这里设置其所在目录（本例设置到“public”目录）
         contentBase: path.resolve(__dirname, '../dist'),
         historyApiFallback: true,  // 所有404的请求不跳转 在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
@@ -48,7 +48,7 @@ module.exports = merge(baseConfig, {
         },
         proxy: {
             "/webservice/*": {
-                target: "http://192.168.13.243",
+                target: "http://192.168.13.234",
                 // changeOrigin: true
             }
         }
@@ -90,6 +90,47 @@ module.exports = merge(baseConfig, {
             },
             {
                 loader: 'less-loader',
+                options: {
+                    sourceMap: true
+                }
+            }
+            ]
+        },{
+            test: /(\.css|\.sass|\.scss)$/,
+            // test: /\.less$/,
+            use: [{
+                loader: 'style-loader'
+            },
+            {
+                loader: 'css-loader',
+                options: {
+                    sourceMap: true,
+                    importLoaders: 1
+                }
+            }, // 查询参数 importLoaders，用于配置「css-loader 作用于 @import 的资源之前」有多少个 loader。
+            {
+                loader: 'postcss-loader',
+                options: {
+                    sourceMap: true,
+                    plugins: (loader) => [
+                        // require('postcss-flexbugs-fixes'),
+                        // require('postcss-import')({ root: loader.resourcePath }),
+                        // require('postcss-cssnext')(),
+                        // require('cssnano')(),
+                        require('autoprefixer')({
+                            browsers: [
+                                '>1%',
+                                'last 4 versions',
+                                'Firefox ESR',
+                                'not ie < 9', // React doesn't support IE8 anyway })
+                            ],
+                            flexbox: 'no-2009',
+                        })
+                    ]
+                }
+            },
+            {
+                loader: 'sass-loader',
                 options: {
                     sourceMap: true
                 }

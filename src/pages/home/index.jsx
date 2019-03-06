@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {observer,store, inject} from 'mobx-react';
 
+// app在store那里
 @inject('app')
 @observer
 class Home extends Component {

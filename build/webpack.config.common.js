@@ -22,6 +22,17 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.js[x]?$/,
+                loader: 'eslint-loader',
+                enforce: 'pre',
+                include: resolve('src'),
+                exclude: [/node_modules/, resolve('src/utils')],
+                options: {
+                    fix: false,
+                    emitWarning: true
+                }
+            },
             // {
             //     test: /.jsx$/,
             //     loader: 'babel-loader',
@@ -36,53 +47,6 @@ module.exports = {
                 //     presets: ['react', 'es2015']
                 // }
             },
-            // {
-            //     test: /\.css$/,
-            //     use: ['style-loader', 'css-loader']
-            // },
-            // {
-            //     test: /\.less$/,
-            //     use: [{
-            //         loader: "style-loader"
-            //     },{
-            //         loader: "css-loader"
-            //     },{
-            //         loader: "less-loader"
-            //     }]
-            // },
-            // {
-            //     test: /(\.css|\.less)$/,
-            //     // test: /\.less$/,
-            //     use: [{
-            //             loader: 'style-loader'
-            //         },
-            //         {
-            //             loader: 'css-loader',
-            //             options: {
-            //                 sourceMap: true,
-            //                 importLoaders: 1
-            //             }
-            //         }, // 查询参数 importLoaders，用于配置「css-loader 作用于 @import 的资源之前」有多少个 loader。
-            //         {
-            //             loader: 'postcss-loader',
-            //             options: {
-            //                 sourceMap: true,
-            //                 plugins: (loader) => [
-            //                     // require('postcss-import')({ root: loader.resourcePath }),
-            //                     // require('postcss-cssnext')(),
-            //                     // require('cssnano')(),
-            //                     require('autoprefixer')({ browsers: 'last 5 version' })
-            //                 ]
-            //             }
-            //         },
-            //         {
-            //             loader: 'less-loader',
-            //             options: {
-            //                 sourceMap: true
-            //             }
-            //         }
-            //     ]
-            // },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/,
                 use: [

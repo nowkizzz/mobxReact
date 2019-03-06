@@ -1,0 +1,30 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "commonjs": true
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "no-var": "warn",
+    "semi": ["warn", "always"],
+    // for 循环方向错误
+    "for-direction": "error",
+    // getter 必须返回
+    "getter-return": [
+      "error",
+      {
+        "allowImplicit": false
+      }
+    ],
+    // 2格缩进
+    "indent": ["warn", 2, {"SwitchCase": 1}],
+    // 要用全等于
+    "eqeqeq": "warn",
+    "no-redeclare": "error"
+  }
+}
