@@ -8,7 +8,8 @@
     "common": "webpack --mode development --config build/webpack.config.common.js",
     "build": "webpack --mode production --config build/webpack.config.prod.js",
     "start": "webpack-dev-server --mode development  --config build/webpack.config.dev.js",
-    "dev": "webpack-dev-server --mode development  --config build/webpack.config.dev.js"
+    "dev": "webpack-dev-server --mode development  --config build/webpack.config.dev.js",
+    "lint": "eslint --ext .js src"
   },
   "author": "",
   "license": "ISC",
@@ -68,8 +69,5 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
     "redux": "^3.7.2"
-  },
-  "pre-commit": [
-    "lint"
-  ]
+  }
 }
